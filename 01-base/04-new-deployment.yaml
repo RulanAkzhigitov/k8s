@@ -1,23 +1,22 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-first-deployment
   namespace: work
   labels:
-    app: &app nginx
-    version: &version 1.27.5
+    app.kubernetes.io/name: &app nginx
+    app.kubernetes.io/version: &version 1.27.5
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: *app
-      version: *version
+      app.kubernetes.io/name: *app
+      app.kubernetes.io/version: *version
   template:
     metadata:
       labels:
-        app: *app
-        version: *version
+        app.kubernetes.io/name: *app
+        app.kubernetes.io/version: *version
     spec:
       initContainers:
         - name: init-myservice
@@ -35,7 +34,7 @@ spec:
               cpu: "500m"
       containers:
         - name: nginx
-          image: nginx:1.27.4
+          image: nginx:1.27.5
           ports:
             - containerPort: 80
           resources:
