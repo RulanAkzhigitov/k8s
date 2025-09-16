@@ -43,7 +43,7 @@ metadata:
 spec:
   replicas: 3
   serviceName: "test-st-headless"
-  podManagementPolicy: Parallel #####
+  podManagementPolicy: Parallel
   selector:
     matchLabels:
       app.kubernetes.io/name: *name
